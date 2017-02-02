@@ -1,0 +1,2 @@
+# zork
+Qt project
