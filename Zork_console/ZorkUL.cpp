@@ -34,14 +34,14 @@ void ZorkUL::createRooms()  {
 
 //             (N, E, S, W)
 	a->setExits(f, b, d, c);
-	b->setExits(NULL, NULL, NULL, a);
-	c->setExits(NULL, a, NULL, NULL);
+    b->setExits(g, NULL, e, a);
+    c->setExits(h, a, i, NULL);
 	d->setExits(a, e, NULL, i);
-	e->setExits(NULL, NULL, NULL, d);
+    e->setExits(b, NULL, NULL, d);
 	f->setExits(NULL, g, a, h);
-	g->setExits(NULL, NULL, NULL, f);
-	h->setExits(NULL, f, NULL, NULL);
-    i->setExits(NULL, d, NULL, NULL);
+    g->setExits(NULL, NULL, b, f);
+    h->setExits(NULL, f, c, NULL);
+    i->setExits(c, d, NULL, NULL);
 
         currentRoom = a;
 }
