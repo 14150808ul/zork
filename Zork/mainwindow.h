@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "ZorkUL.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,6 +24,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    ZorkUL Zork;
 };
 
 #endif // MAINWINDOW_H
