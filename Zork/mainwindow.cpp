@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     Zork()
 {
     ui->setupUi(this);
+    populateLists();
 }
 
 MainWindow::~MainWindow()
@@ -39,3 +40,17 @@ void MainWindow::on_button_south_clicked()
     ui->output->setPlainText(result);
 }
 
+
+void MainWindow::on_button_map_clicked()
+{
+    QString result = QString::fromStdString( "[h] --- [f] --- [g]\n\n"
+                                             "[c] --- [a] --- [b]\n\n"
+                                             "[i] --- [d] --- [e]\n");
+    ui->output->setPlainText(result);
+}
+
+void MainWindow::populateLists(){
+    ui->player_items_list->addItem("Test");
+    ui->room_items_list->addItem("test");
+    ui->room_items_list->addItem("test2");
+}
