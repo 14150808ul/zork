@@ -23,6 +23,8 @@ private slots:
     void on_button_south_clicked();
     void on_button_map_clicked();
 
+    void on_button_item_put_clicked();
+
 private:
 
     void populateLists();

@@ -14,22 +14,22 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    Character.cpp \
     Command.cpp \
     CommandWords.cpp \
     item.cpp \
     Parser.cpp \
     Room.cpp \
-    ZorkUL.cpp
+    ZorkUL.cpp \
+    Player.cpp
 
 HEADERS  += mainwindow.h \
-    Character.h \
     Command.h \
     CommandWords.h \
     item.h \
     Parser.h \
     Room.h \
-    ZorkUL.h
+    ZorkUL.h \
+    Player.h
 
 FORMS    += mainwindow.ui
 

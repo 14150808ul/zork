@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     Zork()
 {
     ui->setupUi(this);
+    //QPushButton *button = new QPushButton("&TEST", this);
     populateLists();
 }
 
@@ -20,24 +21,28 @@ void MainWindow::on_button_west_clicked()
 {
     QString result = QString::fromStdString( Zork.go("west") );
     ui->output->setPlainText(result);
+    populateLists();
 }
 
 void MainWindow::on_button_east_clicked()
 {
     QString result = QString::fromStdString( Zork.go("east") );
     ui->output->setPlainText(result);
+    populateLists();
 }
 
 void MainWindow::on_button_north_clicked()
 {
     QString result = QString::fromStdString( Zork.go("north") );
     ui->output->setPlainText(result);
+    populateLists();
 }
 
 void MainWindow::on_button_south_clicked()
 {
     QString result = QString::fromStdString( Zork.go("south") );
     ui->output->setPlainText(result);
+    populateLists();
 }
 
 
@@ -50,7 +55,22 @@ void MainWindow::on_button_map_clicked()
 }
 
 void MainWindow::populateLists(){
-    ui->player_items_list->addItem("Test");
-    ui->room_items_list->addItem("test");
-    ui->room_items_list->addItem("test2");
+    ui->player_items_list->clear();
+    for( int i = 0; i < Zork.player->playerItems.size(); i++){
+        ui->player_items_list->
+                addItem(QString::fromStdString(Zork.player->playerItems[i].getShortDescription()));
+    }
+
+
+    ui->room_items_list->clear();
+  //ui->player_items_list->addItem("Test");
+    for(int i = 0; i < Zork.currentRoom->itemsInRoom.size(); i++){
+        ui->room_items_list->
+                addItem(QString::fromStdString(Zork.currentRoom->itemsInRoom[i].getShortDescription()));
+    }
+}
+
+void MainWindow::on_button_item_put_clicked()
+{
+    //Remove Item from player and add to Current Room
 }

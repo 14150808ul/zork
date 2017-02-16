@@ -2,14 +2,10 @@
 
 using namespace std;
 #include "ZorkUL.h"
-/*
-int main(int argc, char argv[]) {
-	ZorkUL temp;
-	temp.play();
-	return 0;
-}
-*/
+
 ZorkUL::ZorkUL() {
+    player = new Player();
+    player->addItem(new Item("test_player_item", 2, 2));
 	createRooms();
 }
 
@@ -17,6 +13,7 @@ void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
 
 	a = new Room("a");
+        a->addItem(new Item("test", 2, 2));
 	b = new Room("b");
 	c = new Room("c");
         c->addItem(new Item("GroundHog", 4, 44));
@@ -48,7 +45,7 @@ string ZorkUL::go(string direction) {
 	//Move to the next room
 	Room* nextRoom = currentRoom->nextRoom(direction);
 	if (nextRoom == NULL)
-		return("direction null");
+        return currentRoom->longDescription();
 	else
 	{
 		currentRoom = nextRoom;
