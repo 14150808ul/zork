@@ -13,20 +13,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    Command.cpp \
-    CommandWords.cpp \
     item.cpp \
-    Parser.cpp \
     Room.cpp \
     ZorkUL.cpp \
     Player.cpp
 
-HEADERS  += mainwindow.h \
-    Command.h \
-    CommandWords.h \
+HEADERS  += \
     item.h \
-    Parser.h \
     Room.h \
     ZorkUL.h \
     Player.h
