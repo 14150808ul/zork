@@ -2,7 +2,7 @@
 #define PLAYER_H__
 
 #include <map>
-#include <string>
+#include <QString>
 #include <vector>
 #include "item.h"
 using namespace std;
@@ -15,7 +15,7 @@ public:
     int numberOfItems();
     Player();
     void addItem(Item *inItem);
-    int isInPlayerItems(string inString);
+    int isInPlayerItems(QString inQString);
     void removeFromPlayerItems(int location);
     vector <Item> playerItems;
 };

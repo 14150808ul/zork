@@ -1,8 +1,8 @@
 #include "Room.h"
-#include "Command.h"
 
 
-Room::Room(string description) {
+
+Room::Room(QString description) {
 	this->description = description;
 }
 
@@ -17,28 +17,28 @@ void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
 		exits["west"] = west;
 }
 
-string Room::shortDescription() {
+QString Room::shortDescription() {
 	return description;
 }
 
-string Room::longDescription() {
+QString Room::longDescription() {
 	return "room = " + description + ".\n" + displayItem() + exitString();
 }
 
-string Room::exitString() {
-	string returnString = "\nexits =";
-	for (map<string, Room*>::iterator i = exits.begin(); i != exits.end(); i++)
+QString Room::exitString() {
+    QString returnString = "\nexits =";
+    for (map<QString, Room*>::iterator i = exits.begin(); i != exits.end(); i++)
 		// Loop through map
-		returnString += "  " + i->first;	// access the "first" element of the pair (direction as a string)
+        returnString += "  " + i->first;	// access the "first" element of the pair (direction as a QString)
 	return returnString;
 }
 
-Room* Room::nextRoom(string direction) {
-	map<string, Room*>::iterator next = exits.find(direction); //returns an iterator for the "pair"
+Room* Room::nextRoom(QString direction) {
+    map<QString, Room*>::iterator next = exits.find(direction); //returns an iterator for the "pair"
 	if (next == exits.end())
 		return NULL; // if exits.end() was returned, there's no room in that direction.
 	return next->second; // If there is a room, remove the "second" (Room*)
-				// part of the "pair" (<string, Room*>) and return it.
+                // part of the "pair" (<QString, Room*>) and return it.
 }
 
 void Room::addItem(Item *inItem) {
@@ -47,8 +47,8 @@ void Room::addItem(Item *inItem) {
     itemsInRoom.push_back(*inItem);
 }
 
-string Room::displayItem() {
-    string tempString = "items in room = ";
+QString Room::displayItem() {
+    QString tempString = "items in room = ";
     int sizeItems = (itemsInRoom.size());
     if (itemsInRoom.size() < 1) {
         tempString = "no items in room";
@@ -67,7 +67,7 @@ int Room::numberOfItems() {
     return itemsInRoom.size();
 }
 
-int Room::isItemInRoom(string inString)
+int Room::isItemInRoom(QString inString)
 {
     int sizeItems = (itemsInRoom.size());
     if (itemsInRoom.size() < 1) {

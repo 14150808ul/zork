@@ -9,20 +9,20 @@ void Player::addItem(Item *inItem) {
 }
 
 int Player::numberOfItems() {
-    return playerItems.size();
+    return (int)playerItems.size();
 }
 
-int Player::isInPlayerItems(string inString)
+int Player::isInPlayerItems(QString inQString)
 {
-    int sizeItems = (playerItems.size());
+    int sizeItems = (int)playerItems.size();
     if (playerItems.size() < 1) {
         return false;
         }
     else if (playerItems.size() > 0) {
        int x = (0);
         for (int n = sizeItems; n > 0; n--) {
-            // compare inString with short description
-            int tempFlag = inString.compare( playerItems[x].getShortDescription());
+            // compare inQString with short description
+            int tempFlag = inQString.compare( playerItems[x].getShortDescription());
             if (tempFlag == 0) {
                 playerItems.erase(playerItems.begin()+x);
                 return x;

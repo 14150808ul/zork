@@ -7,13 +7,13 @@ ZorkUL::ZorkUL(QWidget *parent)
     : QWidget(parent)
 {
     createRooms();
-    QPushButton *button_north = createButton("N", SLOT(goNorth()));
+    QPushButton *button_north = createGoButton("N", "north", SLOT(goNorth()));
     button_north->setGeometry(QRect(QPoint(60, 0), QSize(41, 51)));
-    QPushButton *button_south = createButton("S", SLOT(goSouth()));
+    QPushButton *button_south = createGoButton("S", "south", SLOT(goSouth()));
     button_south->setGeometry(QRect(QPoint(60, 90), QSize(41, 51)));
-    QPushButton *button_east = createButton("E", SLOT(goEast()));
+    QPushButton *button_east = createGoButton("E", "east", SLOT(goEast()));
     button_east->setGeometry(QRect(QPoint(100, 50), QSize(51, 41)));
-    QPushButton *button_west = createButton("W", SLOT(goWest()));
+    QPushButton *button_west = createGoButton("W","west", SLOT(goWest()));
     button_west->setGeometry(QRect(QPoint(10, 50), QSize(51, 41)));
 
     QPushButton *button_map = createButton("Map", SLOT(displayMap()));
@@ -55,38 +55,19 @@ void ZorkUL::createRooms()  {
     currentRoom = a;
 }
 
-string ZorkUL::go(string direction) {
+void ZorkUL::go(QString direction) {
     //Make the direction lowercase
     //transform(direction.begin(), direction.end(), direction.begin(),:: tolower);
     //Move to the next room
     Room* nextRoom = currentRoom->nextRoom(direction);
     if (nextRoom == NULL)
-        return currentRoom->longDescription();
+       output->setPlainText( currentRoom->longDescription());
     else
     {
         currentRoom = nextRoom;
-        return currentRoom->longDescription();
+        output->setPlainText( currentRoom->longDescription());
     }
-}
 
-void ZorkUL::goNorth(){
-    output->setPlainText(QString::fromStdString( go("north")));
-    qDebug() << "North";
-}
-
-void ZorkUL::goSouth(){
-    output->setPlainText(QString::fromStdString( go("south")));
-    qDebug() << "South";
-}
-
-void ZorkUL::goEast(){
-     output->setPlainText(QString::fromStdString( go("east")));
-    qDebug() << "East";
-}
-
-void ZorkUL::goWest(){
-        output->setPlainText(QString::fromStdString( go("west")));
-    qDebug() << "West";
 }
 
 void ZorkUL::displayMap(){
@@ -97,6 +78,18 @@ void ZorkUL::displayMap(){
 }
 
 //Taken from Calculator Example
+QPushButton *ZorkUL::createGoButton(const QString &text, const QString &direction,  const char *member)
+{
+    QSignalMapper *mapper = new QSignalMapper();
+    QPushButton *button = new QPushButton(text, this);
+            connect(button, SIGNAL(clicked()), mapper, SLOT(map()));
+            mapper->setMapping(button, direction);
+            connect( mapper, SIGNAL(mapped(QString)), this, SLOT( go(QString)));
+
+
+    return button;
+}
+
 QPushButton *ZorkUL::createButton(const QString &text, const char *member)
 {
     QPushButton *button = new QPushButton(text, this);
