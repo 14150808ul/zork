@@ -1,13 +1,14 @@
 #include "item.h"
 
-Item::Item (string inDescription, int inWeightGrams, float inValue/**, int weaponCheck*/) {
+
+Item::Item (QString inDescription, int inWeightGrams, float inValue/**, int weaponCheck*/) {
 	description = inDescription;
 	setWeight(inWeightGrams);
 	value = inValue;
 	/**weaponCheck(isWeapon);*/
 }
 
-Item::Item(string inDescription) {
+Item::Item(QString inDescription) {
 	description = inDescription;
 }
 
@@ -35,12 +36,12 @@ void Item::setValue(float inValue)
         cout << "Item is a weapon" ;
 }*/
 
-string Item::getShortDescription()
+QString Item::getShortDescription()
 {
 	return description;
 }
 
-string Item::getLongDescription()
+QString Item::getLongDescription()
 {
 	return " item(s), " + description + ".\n";
 }

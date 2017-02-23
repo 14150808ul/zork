@@ -1,25 +1,37 @@
-#ifndef ZORKUL_H_
-#define ZORKUL_H_
+#ifndef ZORK_H
+#define ZORK_H
 
-#include "Command.h"
-#include "Parser.h"
+#include <QWidget>
+#include <QtWidgets>
+#include <QSignalMapper>
 #include "Room.h"
 #include "item.h"
-#include <iostream>
-#include <string>
-using namespace std;
 
-class ZorkUL {
-private:
-	Parser parser;
-	Room *currentRoom;
-	void createRooms();
-    void createItems();
-    void displayItems();
+
+class ZorkUL : public QWidget
+{
+    Q_OBJECT
 
 public:
-	ZorkUL();
-	string go(string direction);
+    ZorkUL(QWidget *parent = 0);
+
+    Room *currentRoom;
+
+private slots:
+    /*void goNorth();
+    void goSouth();
+    void goEast();
+    void goWest();*/
+    void displayMap();
+    void go(QString direction);
+
+private:
+    void ZorkUL::createRooms();
+    QPushButton *ZorkUL::createGoButton(const QString &text, const QString &direction, const char *member);
+    QPushButton *ZorkUL::createButton(const QString &text, const char *member);
+    QTextBrowser *output;
+
 };
 
-#endif /*ZORKUL_H_*/
+
+#endif

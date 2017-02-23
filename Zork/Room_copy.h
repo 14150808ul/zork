@@ -2,7 +2,7 @@
 #define ROOM_H_
 
 #include <map>
-#include <QString>
+#include <string>
 #include <vector>
 #include "item.h"
 using namespace std;
@@ -11,20 +11,20 @@ using std::vector;
 class Room {
 
 private:
-    QString description;
-    map<QString, Room*> exits;
-    QString exitString();
+	string description;
+	map<string, Room*> exits;
+	string exitString();
 
 public:
     int numberOfItems();
-    Room(QString description);
+	Room(string description);
 	void setExits(Room *north, Room *east, Room *south, Room *west);
-    QString shortDescription();
-    QString longDescription();
-    Room* nextRoom(QString direction);
+	string shortDescription();
+	string longDescription();
+	Room* nextRoom(string direction);
     void addItem(Item *inItem);
-    QString displayItem();
-    int isItemInRoom(QString inString);
+    string displayItem();
+    int isItemInRoom(string inString);
     void removeItemFromRoom(int location);
     vector <Item> itemsInRoom;
 };
