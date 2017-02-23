@@ -7,13 +7,13 @@ ZorkUL::ZorkUL(QWidget *parent)
     : QWidget(parent)
 {
     createRooms();
-    QPushButton *button_north = createGoButton("N", "north", SLOT(goNorth()));
+    QPushButton *button_north = createGoButton("N", "north");
     button_north->setGeometry(QRect(QPoint(60, 0), QSize(41, 51)));
-    QPushButton *button_south = createGoButton("S", "south", SLOT(goSouth()));
+    QPushButton *button_south = createGoButton("S", "south");
     button_south->setGeometry(QRect(QPoint(60, 90), QSize(41, 51)));
-    QPushButton *button_east = createGoButton("E", "east", SLOT(goEast()));
+    QPushButton *button_east = createGoButton("E", "east");
     button_east->setGeometry(QRect(QPoint(100, 50), QSize(51, 41)));
-    QPushButton *button_west = createGoButton("W","west", SLOT(goWest()));
+    QPushButton *button_west = createGoButton("W","west");
     button_west->setGeometry(QRect(QPoint(10, 50), QSize(51, 41)));
 
     QPushButton *button_map = createButton("Map", SLOT(displayMap()));
@@ -78,7 +78,7 @@ void ZorkUL::displayMap(){
 }
 
 //Taken from Calculator Example
-QPushButton *ZorkUL::createGoButton(const QString &text, const QString &direction,  const char *member)
+QPushButton *ZorkUL::createGoButton(const QString &text, const QString &direction)
 {
     QSignalMapper *mapper = new QSignalMapper();
     QPushButton *button = new QPushButton(text, this);

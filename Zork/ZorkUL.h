@@ -26,9 +26,9 @@ private slots:
     void go(QString direction);
 
 private:
-    void ZorkUL::createRooms();
-    QPushButton *ZorkUL::createGoButton(const QString &text, const QString &direction, const char *member);
-    QPushButton *ZorkUL::createButton(const QString &text, const char *member);
+    void createRooms();
+    QPushButton *createGoButton(const QString &text, const QString &direction);
+    QPushButton *createButton(const QString &text, const char *member);
     QTextBrowser *output;
 
 };
