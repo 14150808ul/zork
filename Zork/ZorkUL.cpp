@@ -21,8 +21,24 @@ ZorkUL::ZorkUL(QWidget *parent)
     output = new QTextBrowser(this);
     output->setGeometry(QRect(QPoint(170, 20), QSize(391, 231)));
 
-    setFont(*(new QFont("Papyrus", 20)));
+    player_items_list = new QListWidget(this);
+     player_items_list->setGeometry(QRect(QPoint(20, 300), QSize(200, 100)));
+    room_items_list = new QListWidget(this);
+     room_items_list->setGeometry(QRect(QPoint(300, 300), QSize(200, 100)));
 
+
+     QPushButton *button_drop_item = createButton("->", SLOT(dropItem()));
+     button_drop_item->setGeometry(QRect(QPoint(225, 310), QSize(71, 41)));
+
+     QPushButton *button_take_item = createButton("<-", SLOT(takeItem()));
+     button_take_item->setGeometry(QRect(QPoint(225, 360), QSize(71, 41)));
+
+    setFont(*(new QFont("Papyrus", 8)));
+    setGeometry(QRect(QPoint(200, 200), QSize(670, 450)));
+
+    player_items.push_back(*(new Item("Ronut")));
+
+    populateLists();
 }
 
 void ZorkUL::createRooms()  {
@@ -55,6 +71,50 @@ void ZorkUL::createRooms()  {
     currentRoom = a;
 }
 
+void ZorkUL::dropItem(){
+
+    int index =  player_items_list->currentIndex().row();
+    qDebug() << index;
+    if(index != -1){
+     Item  temp = player_items[index];
+        qDebug() << temp.getLongDescription();
+        player_items.erase(player_items.begin() + index);
+        currentRoom->addItem(&temp);
+
+        populateLists();
+    }
+
+
+
+}
+
+void ZorkUL::takeItem(){
+    int index =  room_items_list->currentIndex().row();
+    qDebug() << index;
+    if(index != -1){
+     Item  temp = currentRoom->itemsInRoom[index];
+        qDebug() << temp.getLongDescription();
+        currentRoom->itemsInRoom.erase(currentRoom->itemsInRoom.begin() + index);
+
+         player_items.push_back(temp);
+        populateLists();
+    }
+}
+
+void ZorkUL::populateLists(){
+   player_items_list->clear();
+    for( int i = 0; i < player_items.size(); i++){
+        player_items_list->
+                addItem(player_items[i].getShortDescription());
+    }
+
+    room_items_list->clear();
+    for(int i = 0; i < currentRoom->itemsInRoom.size(); i++){
+        room_items_list->
+                addItem(currentRoom->itemsInRoom[i].getShortDescription());
+    }
+}
+
 void ZorkUL::go(QString direction) {
     //Make the direction lowercase
     //transform(direction.begin(), direction.end(), direction.begin(),:: tolower);
@@ -66,8 +126,8 @@ void ZorkUL::go(QString direction) {
     {
         currentRoom = nextRoom;
         output->setPlainText( currentRoom->longDescription());
+        populateLists();
     }
-
 }
 
 void ZorkUL::displayMap(){
