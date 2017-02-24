@@ -33,12 +33,13 @@ ZorkUL::ZorkUL(QWidget *parent)
      QPushButton *button_take_item = createButton("<-", SLOT(takeItem()));
      button_take_item->setGeometry(QRect(QPoint(225, 360), QSize(71, 41)));
 
-    setFont(*(new QFont("Papyrus", 8)));
+   // setFont(*(new QFont("Papyrus", 8)));
     setGeometry(QRect(QPoint(200, 200), QSize(670, 450)));
 
     player_items.push_back(*(new Item("Ronut")));
 
     populateLists();
+         output->setPlainText( currentRoom->longDescription());
 }
 
 void ZorkUL::createRooms()  {
@@ -82,6 +83,7 @@ void ZorkUL::dropItem(){
         currentRoom->addItem(&temp);
 
         populateLists();
+         output->setPlainText( currentRoom->longDescription());
     }
 
 
@@ -98,6 +100,7 @@ void ZorkUL::takeItem(){
 
          player_items.push_back(temp);
         populateLists();
+         output->setPlainText( currentRoom->longDescription());
     }
 }
 
