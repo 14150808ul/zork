@@ -19,10 +19,6 @@ public:
     Room *currentRoom;
 
 private slots:
-    /*void goNorth();
-    void goSouth();
-    void goEast();
-    void goWest();*/
     void displayMap();
     void go(QString direction);
     void dropItem();
@@ -33,11 +29,11 @@ private:
     void populateLists();
     QPushButton *createGoButton(const QString &text, const QString &direction);
     QPushButton *createButton(const QString &text, const char *member);
-    QTextBrowser *output;
+    QLabel *output;
     QListWidget *player_items_list;
     QListWidget *room_items_list;
 
-   vector <Item> player_items; //Will be moved to Player class
+    vector <Item> player_items; //Will be moved to Player class
 
 };
 

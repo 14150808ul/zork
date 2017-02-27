@@ -17,9 +17,9 @@ int Player::isInPlayerItems(QString inQString)
     int sizeItems = (int)playerItems.size();
     if (playerItems.size() < 1) {
         return false;
-        }
+    }
     else if (playerItems.size() > 0) {
-       int x = (0);
+        int x = (0);
         for (int n = sizeItems; n > 0; n--) {
             // compare inQString with short description
             int tempFlag = inQString.compare( playerItems[x].getShortDescription());
@@ -28,8 +28,8 @@ int Player::isInPlayerItems(QString inQString)
                 return x;
             }
             x++;
-            }
         }
+    }
     return -1;
 }
 

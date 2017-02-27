@@ -28,3 +28,6 @@ FORMS    += mainwindow.ui
 
 DISTFILES += \
     Zork.pro.user
+
+RESOURCES += \
+    resources.qrc
