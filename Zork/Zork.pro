@@ -24,7 +24,7 @@ HEADERS  += \
     ZorkUL.h \
     Player.h
 
-FORMS    += mainwindow.ui
+FORMS    +=
 
 DISTFILES += \
     Zork.pro.user

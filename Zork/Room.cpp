@@ -47,6 +47,10 @@ void Room::addItem(Item *inItem) {
     itemsInRoom.push_back(*inItem);
 }
 
+void Room::removeItem(int index){
+    itemsInRoom.erase(itemsInRoom.begin() + index);
+}
+
 QString Room::displayItem() {
     QString tempString = "items in room = ";
     int sizeItems = (itemsInRoom.size());
@@ -87,4 +91,5 @@ int Room::isItemInRoom(QString inString)
     }
     return -1;
 }
+
 

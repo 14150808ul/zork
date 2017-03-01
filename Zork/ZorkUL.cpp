@@ -93,7 +93,7 @@ void ZorkUL::dropItem(){
         currentRoom->addItem(&temp);
 
         populateLists();
-        //output->setPlainText( currentRoom->longDescription());
+
     }
 
 
@@ -106,8 +106,7 @@ void ZorkUL::takeItem(){
     if(index != -1){
         Item  temp = currentRoom->itemsInRoom[index];
         qDebug() << temp.getLongDescription();
-        currentRoom->itemsInRoom.erase(currentRoom->itemsInRoom.begin() + index);
-
+        currentRoom->removeItem(index);
         player_items.push_back(temp);
         populateLists();
         //output->setPlainText( currentRoom->longDescription());
