@@ -18,14 +18,14 @@ private:
 public:
     int numberOfItems();
     Room(QString description);
-	void setExits(Room *north, Room *east, Room *south, Room *west);
+    void setExits(Room *north, Room *east, Room *south, Room *west);
     QString shortDescription();
     QString longDescription();
     Room* nextRoom(QString direction);
     void addItem(Item *inItem);
     QString displayItem();
     int isItemInRoom(QString inString);
-    void removeItemFromRoom(int location);
+    void Room::removeItem(int index);
     vector <Item> itemsInRoom;
 };
 
