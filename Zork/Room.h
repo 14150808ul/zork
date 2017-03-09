@@ -26,7 +26,7 @@ public:
     QString displayItem();
     int isItemInRoom(QString inString);
     void Room::removeItem(int index);
-    vector <Item> itemsInRoom;
+    vector <Item> itemsInRoom;//make pointier
 };
 
 #endif

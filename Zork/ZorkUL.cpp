@@ -6,49 +6,8 @@ ZorkUL::ZorkUL(QWidget *parent)
     : QWidget(parent)
 {
     createRooms();
-    QPushButton *button_north = createGoButton("N", "north");
-    button_north->setGeometry(QRect(QPoint(60, 0), QSize(41, 51)));
-    QPushButton *button_south = createGoButton("S", "south");
-    button_south->setGeometry(QRect(QPoint(60, 90), QSize(41, 51)));
-    QPushButton *button_east = createGoButton("E", "east");
-    button_east->setGeometry(QRect(QPoint(100, 50), QSize(51, 41)));
-    QPushButton *button_west = createGoButton("W","west");
-    button_west->setGeometry(QRect(QPoint(10, 50), QSize(51, 41)));
-
-    QPushButton *button_map = createButton("Map", SLOT(displayMap()));
-    button_map->setGeometry(QRect(QPoint(80, 210), QSize(71, 41)));
-
-    QPixmap *pic = new QPixmap(":/images/bg1.jpg");
-
-    output = new QLabel(this);
-    output->setPixmap(pic->scaled(390, 230, Qt::KeepAspectRatio));
-    output->setGeometry(QRect(QPoint(170, 20), QSize(391, 231)));
-   // QPixmap *bot = new QPixmap(":/images/sprite.gif");
-    QMovie *bot = new QMovie(":/images/sprite.gif");
-
-
-    QLabel *bot_label = new QLabel(this);
-    bot_label->setMovie(bot);
-    bot_label->setGeometry(QRect(QPoint(260, 20), QSize(391, 231)));
-    bot->start();
-
-
-    player_items_list = new QListWidget(this);
-    player_items_list->setGeometry(QRect(QPoint(20, 300), QSize(200, 100)));
-    room_items_list = new QListWidget(this);
-    room_items_list->setGeometry(QRect(QPoint(300, 300), QSize(200, 100)));
-
-    QPushButton *button_drop_item = createButton("->", SLOT(dropItem()));
-    button_drop_item->setGeometry(QRect(QPoint(225, 310), QSize(71, 41)));
-
-    QPushButton *button_take_item = createButton("<-", SLOT(takeItem()));
-    button_take_item->setGeometry(QRect(QPoint(225, 360), QSize(71, 41)));
-
-    // setFont(*(new QFont("Papyrus", 8)));
-    setGeometry(QRect(QPoint(200, 200), QSize(670, 450)));
-
     player_items.push_back(*(new Item("Ronut")));
-
+    createGUI();
     populateLists();
 }
 
@@ -56,17 +15,24 @@ void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
 
     a = new Room("a");
-    a->addItem(new Item("test", 2, 2));
+    a->addItem(new Item("Blue key"));
     b = new Room("b");
+    b->addItem(new Item("Red key"));
     c = new Room("c");
-    c->addItem(new Item("GroundHog", 4, 44));
-    c->addItem(new Item("Daniel", 4, 44));
+    c->addItem(new Item("Green key"));
+    c->addItem(new Item("GroundHog"));
     d = new Room("d");
+        d->addItem(new Item("Yellow key"));
     e = new Room("e");
+        e->addItem(new Item("Orange key"));
     f = new Room("f");
+        f->addItem(new Item("White key"));
     g = new Room("g");
+        g->addItem(new Item("Black key"));
     h = new Room("h");
+        h->addItem(new Item("Purple key"));
     i = new Room("i");
+    i->addItem(new Item("Gold key"));
 
     //             (N, E, S, W)
     a->setExits(f, b, d, c);
@@ -82,22 +48,67 @@ void ZorkUL::createRooms()  {
     currentRoom = a;
 }
 
+void ZorkUL::createGUI(){
+
+    //Create direction buttons
+    QPushButton *button_north = createGoButton("N", "north");
+    button_north->setGeometry(QRect(QPoint(60, 0), QSize(41, 51)));
+    QPushButton *button_south = createGoButton("S", "south");
+    button_south->setGeometry(QRect(QPoint(60, 90), QSize(41, 51)));
+    QPushButton *button_east = createGoButton("E", "east");
+    button_east->setGeometry(QRect(QPoint(100, 50), QSize(51, 41)));
+    QPushButton *button_west = createGoButton("W","west");
+    button_west->setGeometry(QRect(QPoint(10, 50), QSize(51, 41)));
+
+    //Create map button
+    QPushButton *button_map = createButton("Map", SLOT(displayMap()));
+    button_map->setGeometry(QRect(QPoint(80, 210), QSize(71, 41)));
+
+    //Background Image for room
+    QPixmap *pic = new QPixmap(":/images/bg1.jpg");
+    output = new QLabel(this);
+    output->setPixmap(pic->scaled(390, 230, Qt::KeepAspectRatio));
+    output->setGeometry(QRect(QPoint(170, 20), QSize(391, 231)));
+
+    //Character/enemy sprite
+
+    QMovie *bot = new QMovie(":/images/sprite.gif");
+    QLabel *bot_label = new QLabel(this);
+    bot_label->setMovie(bot);
+    bot_label->setGeometry(QRect(QPoint(260, 20), QSize(391, 231)));
+    bot->start();
+
+    //Item lists
+    player_items_list = new QListWidget(this);
+    player_items_list->setGeometry(QRect(QPoint(20, 300), QSize(200, 100)));
+    room_items_list = new QListWidget(this);
+    room_items_list->setGeometry(QRect(QPoint(300, 300), QSize(200, 100)));
+
+    //Take/Drop buttons
+    QPushButton *button_drop_item = createButton("->", SLOT(dropItem()));
+    button_drop_item->setGeometry(QRect(QPoint(225, 310), QSize(71, 41)));
+    QPushButton *button_take_item = createButton("<-", SLOT(takeItem()));
+    button_take_item->setGeometry(QRect(QPoint(225, 360), QSize(71, 41)));
+
+     //setFont(*(new QFont("Papyrus", 8)));
+
+    //Set window size
+    setGeometry(QRect(QPoint(200, 200), QSize(670, 450)));
+}
+
 void ZorkUL::dropItem(){
 
     int index =  player_items_list->currentIndex().row();
     qDebug() << index;
     if(index != -1){
         Item  temp = player_items[index];
-        qDebug() << temp.getLongDescription();
+        qDebug() << temp.getDescription();
         player_items.erase(player_items.begin() + index);
         currentRoom->addItem(&temp);
 
         populateLists();
 
     }
-
-
-
 }
 
 void ZorkUL::takeItem(){
@@ -105,25 +116,28 @@ void ZorkUL::takeItem(){
     qDebug() << index;
     if(index != -1){
         Item  temp = currentRoom->itemsInRoom[index];
-        qDebug() << temp.getLongDescription();
+        qDebug() << temp.getDescription();
         currentRoom->removeItem(index);
         player_items.push_back(temp);
+
+        //currentRoom >> player
         populateLists();
         //output->setPlainText( currentRoom->longDescription());
     }
 }
 
+//update item lists
 void ZorkUL::populateLists(){
     player_items_list->clear();
     for( int i = 0; i < player_items.size(); i++){
         player_items_list->
-                addItem(player_items[i].getShortDescription());
+                addItem(player_items[i].getDescription());
     }
 
     room_items_list->clear();
     for(int i = 0; i < currentRoom->itemsInRoom.size(); i++){
         room_items_list->
-                addItem(currentRoom->itemsInRoom[i].getShortDescription());
+                addItem(currentRoom->itemsInRoom[i].getDescription());
     }
 }
 
@@ -150,6 +164,7 @@ void ZorkUL::displayMap(){
 }
 
 //Taken from Calculator Example
+
 QPushButton *ZorkUL::createGoButton(const QString &text, const QString &direction)
 {
     QSignalMapper *mapper = new QSignalMapper();

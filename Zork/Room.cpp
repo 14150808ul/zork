@@ -1,7 +1,5 @@
 #include "Room.h"
 
-
-
 Room::Room(QString description) {
     this->description = description;
 }
@@ -60,7 +58,7 @@ QString Room::displayItem() {
     else if (itemsInRoom.size() > 0) {
         int x = (0);
         for (int n = sizeItems; n > 0; n--) {
-            tempString = tempString + itemsInRoom[x].getShortDescription() + "  " ;
+            tempString = tempString + itemsInRoom[x].getDescription() + "  " ;
             x++;
         }
     }
@@ -81,7 +79,7 @@ int Room::isItemInRoom(QString inString)
         int x = (0);
         for (int n = sizeItems; n > 0; n--) {
             // compare inString with short description
-            int tempFlag = inString.compare( itemsInRoom[x].getShortDescription());
+            int tempFlag = inString.compare( itemsInRoom[x].getDescription());
             if (tempFlag == 0) {
                 itemsInRoom.erase(itemsInRoom.begin()+x);
                 return x;

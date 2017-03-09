@@ -22,7 +22,7 @@ int Player::isInPlayerItems(QString inQString)
         int x = (0);
         for (int n = sizeItems; n > 0; n--) {
             // compare inQString with short description
-            int tempFlag = inQString.compare( playerItems[x].getShortDescription());
+            int tempFlag = inQString.compare( playerItems[x].getDescription());
             if (tempFlag == 0) {
                 playerItems.erase(playerItems.begin()+x);
                 return x;

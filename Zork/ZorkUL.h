@@ -26,6 +26,7 @@ private slots:
 
 private:
     void createRooms();
+    void createGUI();
     void populateLists();
     QPushButton *createGoButton(const QString &text, const QString &direction);
     QPushButton *createButton(const QString &text, const char *member);
