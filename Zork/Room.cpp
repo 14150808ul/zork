@@ -2,6 +2,7 @@
 
 Room::Room(QString description) {
     this->description = description;
+    this->bot = NULL;
 }
 
 void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
@@ -14,6 +15,8 @@ void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
     if (west != NULL)
         exits["west"] = west;
 }
+
+
 
 QString Room::shortDescription() {
     return description;
@@ -90,4 +93,10 @@ int Room::isItemInRoom(QString inString)
     return -1;
 }
 
+QMovie* Room::getBot(){
+    return bot;
+}
 
+void Room::setBot(QMovie *bot){
+    this->bot = bot;
+}

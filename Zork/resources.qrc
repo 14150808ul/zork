@@ -4,5 +4,6 @@
         <file>sprite1.png</file>
         <file>sprite2.png</file>
         <file>sprite.gif</file>
+        <file>Bender.gif</file>
     </qresource>
 </RCC>

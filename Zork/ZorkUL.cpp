@@ -9,13 +9,17 @@ ZorkUL::ZorkUL(QWidget *parent)
     player_items.push_back(*(new Item("Ronut")));
     createGUI();
     populateLists();
+    updateBot();
 }
 
+//Creates rooms and adds items/bots
 void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
 
     a = new Room("a");
     a->addItem(new Item("Blue key"));
+    a->setBot(new QMovie(":/images/sprite.gif"));
+
     b = new Room("b");
     b->addItem(new Item("Red key"));
     c = new Room("c");
@@ -25,6 +29,7 @@ void ZorkUL::createRooms()  {
         d->addItem(new Item("Yellow key"));
     e = new Room("e");
         e->addItem(new Item("Orange key"));
+            e->setBot(new QMovie(":/images/Bender.gif"));
     f = new Room("f");
         f->addItem(new Item("White key"));
     g = new Room("g");
@@ -48,6 +53,7 @@ void ZorkUL::createRooms()  {
     currentRoom = a;
 }
 
+//Creates the ui elements
 void ZorkUL::createGUI(){
 
     //Create direction buttons
@@ -61,8 +67,8 @@ void ZorkUL::createGUI(){
     button_west->setGeometry(QRect(QPoint(10, 50), QSize(51, 41)));
 
     //Create map button
-    QPushButton *button_map = createButton("Map", SLOT(displayMap()));
-    button_map->setGeometry(QRect(QPoint(80, 210), QSize(71, 41)));
+  //  QPushButton *button_map = createButton("Map", SLOT(displayMap()));
+  // button_map->setGeometry(QRect(QPoint(80, 210), QSize(71, 41)));
 
     //Background Image for room
     QPixmap *pic = new QPixmap(":/images/bg1.jpg");
@@ -72,11 +78,8 @@ void ZorkUL::createGUI(){
 
     //Character/enemy sprite
 
-    QMovie *bot = new QMovie(":/images/sprite.gif");
-    QLabel *bot_label = new QLabel(this);
-    bot_label->setMovie(bot);
+    bot_label = new QLabel(this);
     bot_label->setGeometry(QRect(QPoint(260, 20), QSize(391, 231)));
-    bot->start();
 
     //Item lists
     player_items_list = new QListWidget(this);
@@ -153,6 +156,21 @@ void ZorkUL::go(QString direction) {
         currentRoom = nextRoom;
       //  output->setPlainText( currentRoom->longDescription());
         populateLists();
+        updateBot();
+    }
+}
+
+void ZorkUL::updateBot(){
+    QMovie *bot = currentRoom->getBot();
+
+    if( bot )
+    {
+        bot_label->setMovie(bot);
+        bot->start();
+        bot_label->show();
+    }
+    else{
+        bot_label->hide();
     }
 }
 

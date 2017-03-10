@@ -3,6 +3,7 @@
 
 #include <map>
 #include <QString>
+#include <QMovie>
 #include <vector>
 #include "item.h"
 using namespace std;
@@ -14,6 +15,7 @@ private:
     QString description;
     map<QString, Room*> exits;
     QString exitString();
+    QMovie *bot;
 
 public:
     int numberOfItems();
@@ -27,6 +29,9 @@ public:
     int isItemInRoom(QString inString);
     void Room::removeItem(int index);
     vector <Item> itemsInRoom;//make pointier
+    QMovie* getBot();
+    void setBot(QMovie *bot);
+
 };
 
 #endif

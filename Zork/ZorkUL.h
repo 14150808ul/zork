@@ -28,9 +28,11 @@ private:
     void createRooms();
     void createGUI();
     void populateLists();
+    void updateBot();
     QPushButton *createGoButton(const QString &text, const QString &direction);
     QPushButton *createButton(const QString &text, const char *member);
     QLabel *output;
+    QLabel *bot_label;
     QListWidget *player_items_list;
     QListWidget *room_items_list;
 
