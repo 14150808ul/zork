@@ -6,8 +6,6 @@
 #include <QSignalMapper>
 #include "Room.h"
 #include "item.h"
-#include "Player.h"
-
 
 class ZorkUL : public QWidget
 {
@@ -29,6 +27,7 @@ private:
     void createGUI();
     void populateLists();
     void updateBot();
+
     QPushButton *createGoButton(const QString &text, const QString &direction);
     QPushButton *createButton(const QString &text, const char *member);
     QLabel *output;
