@@ -14,21 +14,22 @@ class Room {
 private:
     QString description;
     map<QString, Room*> exits;
-    QString exitString();
     QMovie *bot;
+    vector <Item*> itemsInRoom;
 
 public:
-    int numberOfItems();
     Room(QString description);
+
     void setExits(Room *north, Room *east, Room *south, Room *west);
-    QString shortDescription();
-    QString longDescription();
     Room* nextRoom(QString direction);
+
+    QString getDescription();
+
     void addItem(Item *inItem);
-    QString displayItem();
-    int isItemInRoom(QString inString);
     void Room::removeItem(int index);
-    vector <Item> itemsInRoom;//make pointier
+
+    vector<Item*> getItemsInRoom();
+
     QMovie* getBot();
     void setBot(QMovie *bot);
 

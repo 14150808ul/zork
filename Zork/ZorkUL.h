@@ -36,7 +36,7 @@ private:
     QListWidget *player_items_list;
     QListWidget *room_items_list;
 
-    vector <Item> player_items; //Will be moved to Player class
+    vector <Item*> player_items; //Will be moved to Player class
 
 };
 

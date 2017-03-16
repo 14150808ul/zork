@@ -11,7 +11,6 @@ private:
     QString description;
 
 public:
-
     Item (QString description);
     QString getDescription();
 };

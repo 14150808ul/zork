@@ -6,7 +6,7 @@ ZorkUL::ZorkUL(QWidget *parent)
     : QWidget(parent)
 {
     createRooms();
-    player_items.push_back(*(new Item("Ronut")));
+    player_items.push_back((new Item("Ronut")));
     createGUI();
     populateLists();
     updateBot();
@@ -104,10 +104,10 @@ void ZorkUL::dropItem(){
     int index =  player_items_list->currentIndex().row();
     qDebug() << index;
     if(index != -1){
-        Item  temp = player_items[index];
-        qDebug() << temp.getDescription();
+        Item* temp = player_items[index];
+        qDebug() << temp->getDescription();
         player_items.erase(player_items.begin() + index);
-        currentRoom->addItem(&temp);
+        currentRoom->addItem(temp);
 
         populateLists();
 
@@ -118,8 +118,8 @@ void ZorkUL::takeItem(){
     int index =  room_items_list->currentIndex().row();
     qDebug() << index;
     if(index != -1){
-        Item  temp = currentRoom->itemsInRoom[index];
-        qDebug() << temp.getDescription();
+        Item*  temp = currentRoom->getItemsInRoom()[index];
+        qDebug() << temp->getDescription();
         currentRoom->removeItem(index);
         player_items.push_back(temp);
 
@@ -134,13 +134,13 @@ void ZorkUL::populateLists(){
     player_items_list->clear();
     for( int i = 0; i < player_items.size(); i++){
         player_items_list->
-                addItem(player_items[i].getDescription());
+                addItem(player_items[i]->getDescription());
     }
 
     room_items_list->clear();
-    for(int i = 0; i < currentRoom->itemsInRoom.size(); i++){
+    for(int i = 0; i < currentRoom->getItemsInRoom().size(); i++){
         room_items_list->
-                addItem(currentRoom->itemsInRoom[i].getDescription());
+                addItem(currentRoom->getItemsInRoom()[i]->getDescription());
     }
 }
 
