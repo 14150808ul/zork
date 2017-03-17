@@ -7,12 +7,14 @@
 using namespace std;
 
 class Item {
-private:
+protected:
     QString description;
 
 public:
     Item (QString description);
+    Item ();
     QString getDescription();
+
 };
 
 #endif /*ITEM_H_*/

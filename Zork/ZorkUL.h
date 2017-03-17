@@ -26,7 +26,8 @@ private:
     void createRooms();
     void createGUI();
     void populateLists();
-    void updateBot();
+    void updateRoom();
+    int player_key_count;
 
     QPushButton *createGoButton(const QString &text, const QString &direction);
     QPushButton *createButton(const QString &text, const char *member);

@@ -1,43 +1,40 @@
 #include <QtWidgets>
 #include "ZorkUL.h"
+
+#define TOTAL_KEYS 4
 using namespace std;
 
 ZorkUL::ZorkUL(QWidget *parent)
     : QWidget(parent)
 {
-    createRooms();
-    player_items.push_back((new Item("Ronut")));
+  createRooms();
+   // player_items.push_back((new Item("Ronut")));
     createGUI();
     populateLists();
-    updateBot();
+    updateRoom();
+    player_key_count = 0;
 }
 
 //Creates rooms and adds items/bots
 void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
 
-    a = new Room("a");
+    a = new Room("a", new QPixmap(":/images/bg1.jpg"));
     a->addItem(new Item("Blue key"));
     a->setBot(new QMovie(":/images/sprite.gif"));
 
-    b = new Room("b");
+    b = new Room("b", new QPixmap(":/images/bg2.PNG"));
     b->addItem(new Item("Red key"));
-    c = new Room("c");
+    c = new Room("c", new QPixmap(":/images/bg3.jpg"));
     c->addItem(new Item("Green key"));
-    c->addItem(new Item("GroundHog"));
-    d = new Room("d");
-        d->addItem(new Item("Yellow key"));
-    e = new Room("e");
-        e->addItem(new Item("Orange key"));
-            e->setBot(new QMovie(":/images/Bender.gif"));
-    f = new Room("f");
-        f->addItem(new Item("White key"));
-    g = new Room("g");
-        g->addItem(new Item("Black key"));
-    h = new Room("h");
-        h->addItem(new Item("Purple key"));
-    i = new Room("i");
-    i->addItem(new Item("Gold key"));
+    d = new Room("d", new QPixmap(":/images/bg4.PNG"));
+    d->addItem(new Item("Yellow key"));
+    e = new Room("e", new QPixmap(":/images/bg6.PNG"));
+    e->setBot(new QMovie(":/images/Bender.gif"));
+    f = new Room("f", new QPixmap(":/images/bg7.PNG"));
+    g = new Room("g", new QPixmap(":/images/bg8.PNG"));
+    h = new Room("h", new QPixmap(":/images/bg9.PNG"));
+    i = new Room("i", new QPixmap(":/images/bg5.PNG"));
 
     //             (N, E, S, W)
     a->setExits(f, b, d, c);
@@ -71,9 +68,8 @@ void ZorkUL::createGUI(){
   // button_map->setGeometry(QRect(QPoint(80, 210), QSize(71, 41)));
 
     //Background Image for room
-    QPixmap *pic = new QPixmap(":/images/bg1.jpg");
+
     output = new QLabel(this);
-    output->setPixmap(pic->scaled(390, 230, Qt::KeepAspectRatio));
     output->setGeometry(QRect(QPoint(170, 20), QSize(391, 231)));
 
     //Character/enemy sprite
@@ -92,8 +88,7 @@ void ZorkUL::createGUI(){
     button_drop_item->setGeometry(QRect(QPoint(225, 310), QSize(71, 41)));
     QPushButton *button_take_item = createButton("<-", SLOT(takeItem()));
     button_take_item->setGeometry(QRect(QPoint(225, 360), QSize(71, 41)));
-
-     //setFont(*(new QFont("Papyrus", 8)));
+    //setFont(*(new QFont("Papyrus", 8)));
 
     //Set window size
     setGeometry(QRect(QPoint(200, 200), QSize(670, 450)));
@@ -111,6 +106,12 @@ void ZorkUL::dropItem(){
 
         populateLists();
 
+        if(temp->getDescription().contains("key")){
+            player_key_count--;
+           qDebug() << player_key_count;
+
+          }
+
     }
 }
 
@@ -122,10 +123,18 @@ void ZorkUL::takeItem(){
         qDebug() << temp->getDescription();
         currentRoom->removeItem(index);
         player_items.push_back(temp);
-
-        //currentRoom >> player
         populateLists();
-        //output->setPlainText( currentRoom->longDescription());
+
+        //if key
+
+        if(temp->getDescription().contains("key")){
+            player_key_count++;
+           qDebug() << player_key_count;
+           if(player_key_count == TOTAL_KEYS ){
+              qDebug() <<"You won!";
+             }
+
+          }
     }
 }
 
@@ -156,11 +165,11 @@ void ZorkUL::go(QString direction) {
         currentRoom = nextRoom;
       //  output->setPlainText( currentRoom->longDescription());
         populateLists();
-        updateBot();
+        updateRoom();
     }
 }
 
-void ZorkUL::updateBot(){
+void ZorkUL::updateRoom(){
     QMovie *bot = currentRoom->getBot();
 
     if( bot )
@@ -172,6 +181,12 @@ void ZorkUL::updateBot(){
     else{
         bot_label->hide();
     }
+
+    QPixmap *background = currentRoom->getBackground();
+
+    output->setPixmap(background->scaled(390, 230));
+
+
 }
 
 void ZorkUL::displayMap(){

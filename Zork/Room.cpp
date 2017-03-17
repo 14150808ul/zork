@@ -1,7 +1,8 @@
 #include "Room.h"
 
-Room::Room(QString description) {
+Room::Room(QString description, QPixmap *background) {
     this->description = description;
+  this->background = background;
     this->bot = NULL;
 }
 
@@ -48,3 +49,7 @@ void Room::setBot(QMovie *bot){
 vector<Item *> Room::getItemsInRoom(){
     return itemsInRoom;
 }
+
+QPixmap* Room::getBackground(){
+  return background;
+};

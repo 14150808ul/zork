@@ -15,10 +15,11 @@ private:
     QString description;
     map<QString, Room*> exits;
     QMovie *bot;
+    QPixmap *background;
     vector <Item*> itemsInRoom;
 
 public:
-    Room(QString description);
+    Room(QString description, QPixmap *background);
 
     void setExits(Room *north, Room *east, Room *south, Room *west);
     Room* nextRoom(QString direction);
@@ -32,6 +33,9 @@ public:
 
     QMovie* getBot();
     void setBot(QMovie *bot);
+
+    QPixmap* getBackground();
+    void setBackground(QPixmap *image);
 
 };
 
