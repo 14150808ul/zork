@@ -11,5 +11,6 @@
         <file>bg8.PNG</file>
         <file>bg9.PNG</file>
         <file>bg5.PNG</file>
+        <file>chest.gif</file>
     </qresource>
 </RCC>

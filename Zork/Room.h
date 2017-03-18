@@ -20,6 +20,7 @@ private:
 
 public:
     Room(QString description, QPixmap *background);
+    ~Room();
 
     void setExits(Room *north, Room *east, Room *south, Room *west);
     Room* nextRoom(QString direction);
@@ -36,7 +37,6 @@ public:
 
     QPixmap* getBackground();
     void setBackground(QPixmap *image);
-
 };
 
 #endif

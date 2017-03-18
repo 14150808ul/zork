@@ -1,10 +1,16 @@
 #include "Room.h"
+#include <QDebug>
 
 Room::Room(QString description, QPixmap *background) {
     this->description = description;
   this->background = background;
     this->bot = NULL;
 }
+
+Room::~Room(){
+  qDebug() << "Room's destructor called" << endl;
+}
+
 
 void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
     if (north != NULL)
@@ -52,4 +58,4 @@ vector<Item *> Room::getItemsInRoom(){
 
 QPixmap* Room::getBackground(){
   return background;
-};
+}

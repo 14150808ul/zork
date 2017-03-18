@@ -12,7 +12,7 @@ protected:
 
 public:
     Item (QString description);
-    Item ();
+    ~Item ();
     QString getDescription();
 
 };

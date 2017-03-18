@@ -15,6 +15,11 @@ ZorkUL::ZorkUL(QWidget *parent)
     player_key_count = 0;
 }
 
+ZorkUL::~ZorkUL(){
+  qDebug() << "ZorkUL's destructor called";
+
+}
+
 //Creates rooms and adds items/bots
 void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
@@ -132,6 +137,12 @@ void ZorkUL::takeItem(){
            qDebug() << player_key_count;
            if(player_key_count == TOTAL_KEYS ){
               qDebug() <<"You won!";
+
+              QMovie *chest = new QMovie(":/images/chest.gif");
+              bot_label->setMovie(chest);
+              chest->start();
+              bot_label->show();
+
              }
 
           }
@@ -188,15 +199,6 @@ void ZorkUL::updateRoom(){
 
 
 }
-
-void ZorkUL::displayMap(){
-    QString mapString = QString::fromStdString( "[h] --- [f] --- [g]\n\n"
-                                                "[c] --- [a] --- [b]\n\n"
-                                                "[i] --- [d] --- [e]\n");
-    //output->setPlainText(mapString);
-}
-
-//Taken from Calculator Example
 
 QPushButton *ZorkUL::createGoButton(const QString &text, const QString &direction)
 {

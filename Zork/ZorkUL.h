@@ -13,11 +13,11 @@ class ZorkUL : public QWidget
 
 public:
     ZorkUL(QWidget *parent = 0);
+    ~ZorkUL();
 
-    Room *currentRoom;
+
 
 private slots:
-    void displayMap();
     void go(QString direction);
     void dropItem();
     void takeItem();
@@ -25,16 +25,19 @@ private slots:
 private:
     void createRooms();
     void createGUI();
+
     void populateLists();
     void updateRoom();
-    int player_key_count;
 
     QPushButton *createGoButton(const QString &text, const QString &direction);
     QPushButton *createButton(const QString &text, const char *member);
-    QLabel *output;
-    QLabel *bot_label;
-    QListWidget *player_items_list;
-    QListWidget *room_items_list;
+
+    int player_key_count; //number of keys the player has picked up
+    Room *currentRoom;  //player's current room
+    QLabel *output;   //The main display panel - contains room's background image
+    QLabel *bot_label;  //Contains bot image
+    QListWidget *player_items_list;   //List widget for player's inventory
+    QListWidget *room_items_list;   //List widget for items in room
 
     vector <Item*> player_items; //Will be moved to Player class
 
