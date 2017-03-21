@@ -15,12 +15,18 @@ TEMPLATE = app
 SOURCES += main.cpp\
     item.cpp \
     Room.cpp \
-    ZorkUL.cpp
+    ZorkUL.cpp \
+    character.cpp \
+    enemy.cpp \
+    player.cpp
 
 HEADERS  += \
     item.h \
     Room.h \
-    ZorkUL.h
+    ZorkUL.h \
+    character.h \
+    enemy.h \
+    player.h
 
 FORMS    +=
 
