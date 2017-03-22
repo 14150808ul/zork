@@ -28,7 +28,7 @@ public:
     QString getDescription();
 
     void addItem(Item *inItem);
-    void Room::removeItem(int index);
+    void removeItem(int index);
 
     vector<Item*> getItemsInRoom();
 
