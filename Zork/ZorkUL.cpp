@@ -1,5 +1,6 @@
 #include <QtWidgets>
 #include "ZorkUL.h"
+#include "logger.h"
 
 #define TOTAL_KEYS 4
 using namespace std;
@@ -122,10 +123,13 @@ void ZorkUL::dropItem(){
 
 void ZorkUL::takeItem(){
     int index =  room_items_list->currentIndex().row();
-    qDebug() << index;
+
     if(index != -1){
         Item*  temp = currentRoom->getItemsInRoom()[index];
-        qDebug() << temp->getDescription();
+
+
+        Logger::log(*temp, QString("Picked up item"));
+
         currentRoom->removeItem(index);
         player_items.push_back(temp);
         populateLists();
@@ -182,6 +186,7 @@ void ZorkUL::go(QString direction) {
 
 void ZorkUL::updateRoom(){
     QMovie *bot = currentRoom->getBot();
+
 
     if( bot )
     {

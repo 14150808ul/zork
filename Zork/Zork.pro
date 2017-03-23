@@ -26,7 +26,8 @@ HEADERS  += \
     ZorkUL.h \
     character.h \
     enemy.h \
-    player.h
+    player.h \
+    logger.h
 
 FORMS    +=
 

@@ -7,6 +7,8 @@
 using namespace std;
 
 class Item {
+  friend QDebug &operator<<( QDebug &, Item & );
+
 protected:
     QString description;
 
@@ -14,7 +16,5 @@ public:
     Item (QString description);
     ~Item ();
     QString getDescription();
-
 };
-
 #endif /*ITEM_H_*/
