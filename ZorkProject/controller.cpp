@@ -1,4 +1,5 @@
 #include "controller.h"
+#include "logger.h"
 
 #include <QDebug>
 #include <iostream>
@@ -48,4 +49,5 @@ void Controller::attackEnemy()
 {
     model->getCurrentRoom()->playerFight(model->getPlayer());
     updateView(); //update the view
+    Logger::log(*(model->getPlayer()), QString("Player attacks..."));
 }

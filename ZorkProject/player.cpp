@@ -1,4 +1,5 @@
 #include "player.h"
+#include <QDebug>
 
 Player::Player(QString name, int health, int attack): Character(name, health, attack), key_counter(0)
 {
@@ -32,4 +33,9 @@ Item* Player::operator-(int index)
 const std::vector<Item*>& Player::getPlayerItems() const
 {
     return player_items;
+}
+
+QDebug &operator<<( QDebug &out, Player &P ){
+  out << "Name -- " << P.getName() << "\nHealth -- " << P.getHealth();
+  return out;
 }

@@ -15,6 +15,8 @@
 
 class Player : public Character
 {
+   friend QDebug &operator<<( QDebug &, Player & );
+
 public:
     Player(QString name = NAME, int health=100, int attack = 5);
     int getAttack() const;
