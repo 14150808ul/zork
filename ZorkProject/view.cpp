@@ -40,7 +40,7 @@ void View::setWidgetPos()
     background_images[5] = new QPixmap(":/images/bg6.PNG");
     background_images[6] = new QPixmap(":/images/bg7.PNG");
     background_images[7] = new QPixmap(":/images/bg8.jpg");
-    background_images[8] = new QPixmap(":/images/bg9.jpg");
+    background_images[8] = new QPixmap(":/images/bg9.PNG");
     enemy_image = new QPixmap(":/images/enemy.png");
     background_label->setGeometry(170, 20, 391, 231);
     enemy_label->setGeometry(350, 120, 70, 110);

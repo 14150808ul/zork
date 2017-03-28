@@ -8,7 +8,7 @@
         <file>bg6.PNG</file>
         <file>bg7.PNG</file>
         <file>bg8.jpg</file>
-        <file>bg9.jpg</file>
         <file>enemy.png</file>
+        <file>bg9.PNG</file>
     </qresource>
 </RCC>
