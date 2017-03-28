@@ -5,6 +5,8 @@
 
 class Item
 {
+  friend QDebug &operator<<( QDebug &, Item & );
+
 public:
     Item (QString description);
     QString getDescription() const;

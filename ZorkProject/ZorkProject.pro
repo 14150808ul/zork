@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     character.cpp \
     player.cpp \
     enemy.cpp \
-    item.cpp
+    item.cpp \
+    logger.cpp
 
 HEADERS  += \
     view.h \
@@ -27,7 +28,8 @@ HEADERS  += \
     character.h \
     player.h \
     enemy.h \
-    item.h
+    item.h \
+    logger.h
 
 RESOURCES += \
     rsc.qrc
