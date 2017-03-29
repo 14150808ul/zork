@@ -22,7 +22,8 @@ public:
 private:
     QSignalMapper signal_mapper;
     QLabel *background_label, *enemy_label;
-    QPixmap *background_images[9], *enemy_image;
+    QPixmap *background_images[9];
+    QMovie *enemy_image;
     QListWidget *room_item_display, *player_item_display;
     QPushButton *buttons[4], *drop_button, *take_button, *attack_button;
     void createWidgets();

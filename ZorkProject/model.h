@@ -17,7 +17,6 @@ public:
     Room* getCurrentRoom() const;
 private:
     Player* player;
-    Character *enemy_character;
     Room* rooms[9];
     Room* current_room_ptr;
 signals:

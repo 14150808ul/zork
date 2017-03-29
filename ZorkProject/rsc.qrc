@@ -10,5 +10,6 @@
         <file>bg8.jpg</file>
         <file>enemy.png</file>
         <file>bg9.PNG</file>
+        <file>enemy.gif</file>
     </qresource>
 </RCC>

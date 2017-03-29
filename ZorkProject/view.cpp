@@ -1,4 +1,5 @@
 #include "view.h"
+#include <QMovie>
 
 View::View(QWidget* parent) : QWidget(parent), signal_mapper(), background_label(new QLabel(this)), enemy_label(new QLabel(this)),
     room_item_display(new QListWidget(this)),player_item_display(new QListWidget(this)),
@@ -41,11 +42,12 @@ void View::setWidgetPos()
     background_images[6] = new QPixmap(":/images/bg7.PNG");
     background_images[7] = new QPixmap(":/images/bg8.jpg");
     background_images[8] = new QPixmap(":/images/bg9.PNG");
-    enemy_image = new QPixmap(":/images/enemy.png");
+    enemy_image = new QMovie(":/images/enemy.gif");
     background_label->setGeometry(170, 20, 391, 231);
-    enemy_label->setGeometry(350, 120, 70, 110);
+    enemy_label->setGeometry(250, 45, 391, 231);
     background_label->setPixmap(background_images[4]->scaled(390,230));
-    enemy_label->setPixmap(enemy_image->scaledToHeight(110));
+    enemy_label->setMovie(enemy_image);
+        enemy_image->start();
     buttons[0]->setGeometry(60, 0, 41, 51);
     buttons[1]->setGeometry(60, 90, 41, 51);
     buttons[2]->setGeometry(100, 50, 51, 41);

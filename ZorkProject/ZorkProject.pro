@@ -33,3 +33,6 @@ HEADERS  += \
 
 RESOURCES += \
     rsc.qrc
+
+DISTFILES += \
+    enemy.gif
