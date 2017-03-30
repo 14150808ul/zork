@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>bg1.jpg</file>
+        <file>bg2.PNG</file>
+        <file>bg3.jpg</file>
+        <file>bg4.PNG</file>
+        <file>bg5.PNG</file>
+        <file>bg6.PNG</file>
+        <file>bg7.PNG</file>
+        <file>bg8.jpg</file>
+        <file>enemy.png</file>
+        <file>bg9.PNG</file>
+        <file>enemy.gif</file>
+        <file>bloody.gif</file>
+        <file>healthy.gif</file>
+    </qresource>
+</RCC>
