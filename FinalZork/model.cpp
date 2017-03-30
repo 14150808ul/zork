@@ -12,6 +12,10 @@ Model::Model() : player(new Player)
     for(int i = 0; i < 4;i++)
         rooms[rand() % 9]->addRoomItem(new Item("key"));
 
+    rooms[rand() % 9]->addRoomItem(new Item("apple"));
+    rooms[rand() % 9]->addRoomItem(new Item("broom"));
+
+
    current_room_ptr = rooms[4];
 }
 
